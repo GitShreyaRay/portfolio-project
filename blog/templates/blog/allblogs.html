@@ -80,8 +80,8 @@
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav ms-auto">
       <a class="nav-item nav-link" href="http://www.linkedin.com/in/shreya-ray-b1961057">LinkedIn</a>
-      <a class="nav-item nav-link" href="{% static 'Resume.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link" href="{% static 'Resume.pdf'%}">Resume</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
   </div>
   </div>
 </div>
@@ -89,41 +89,27 @@
 </header>
 
 <main>
-
-<section class="py-5 text-center container">
-<div class="row py-lg-5">
-  <div class="col-lg-6 col-md-8 mx-auto">
-    <h1 class="fw-light">Hi I'm Shreya</h1>
-    <p class="lead text-muted">Hey, my name is Shreya Ray and I like to make websites.</p>
-    <p>
-      <a href="mailto:terminatorsqua@gmail.com" class="btn btn-primary my-2">Email Me</a>
-    </p>
-    <img src="{% static 'portfolio-photo.jpg' %}" alt="protfolio-photo" height=250>
-  </div>
-</div>
-</section>
-
-<div class="album py-5 bg-light">
 <div class="container">
-
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    {% for job in jobs.all %}
-    <div class="col">
-      <div class="card shadow-sm">
-        <img class="card-img-top" src="{{ job.image.url}}" alt="Job Role Image">
-        <div class="card-body">
-          <p class="card-text">{{ job.summary}}</p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
+<h1 class="text-center py-3">Welcome to Shreya's Blog</h1>
+<br/>
+<br/>
+<h2>Latest Posts</h2>
+<hr/>
+{% for blog in blogs.all %}
+<a href="{% url 'detail' blog.id %}"><h3>{{blog.title}}</h3></a>
+<br/>
+{{blog.pub_date_pretty}}
+<br/>
+<img class="img-fluid" src="{{blog.image.url}}" height=200 width=200 alt="blog image">
+<br/>
+{{blog.summary}}
+{% endfor %}
+<br/>
 </div>
 
 </main>
 
-<footer class="text-muted py-5">
+<footer class="text-muted py-2">
 <div class="container text-center">
 <p>© CopyRight Shreya Ray {% now %Y %}</p>
 </div>
